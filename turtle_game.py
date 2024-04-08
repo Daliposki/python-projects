@@ -2,37 +2,38 @@ import turtle
 import random
 
 screen = turtle.Screen()
-screen.title("Trka zo zelki")
+screen.title("Turtle Race")
 screen.setup(width=1000, height=800)
 
 screen.bgcolor("black")
 
-start = screen.textinput("dobredojde v igra!", "sto mislis koja zelka ke pobedi?")
+start = screen.textinput("welcome to the game!", "which turtle do you think will win? red, yellow, gray, green, orange or brown?")
 
 
-zelki = []
-boja_na_zelki = ["green", "red", "yellow", "orange", "gray", 'brown']
-lokacija_na_zelki = [300, 200, 100, 0, -100, -200]
+turtles = []
+color_of_turtles = ["green", "red", "yellow", "orange", "gray", 'brown']
+location_of_turtles = [300, 200, 100, 0, -100, -200]
 
 for i in range(6):
     tim = turtle.Turtle()
     tim.shape('turtle')
-    tim.color(boja_na_zelki[i])
+    tim.color(color_of_turtles[i])
     tim.penup()
-    tim.setposition(-300, lokacija_na_zelki[i])
-    zelki.append(tim)
+    tim.setposition(-300, location_of_turtles[i])
+    turtles.append(tim)
 
 
 for j in range(100):
     for i in range(6):
-        broj = random.randint(10, 100)
-        zelki[i].forward(broj)
-        if zelki[i].xcor() > 330:
+        number = random.randint(10, 100)
+        turtles[i].forward(number)
+        if turtles[i].xcor() > 330:
 
-            if zelki[i].fillcolor() == start:
-                print("pobedivtre")
+            if turtles[i].fillcolor() == start:
+                print("you won!")
             else:
-                print("izgubivte")
+                print("you lost!")
             screen.bye()
 
 screen.mainloop()
+# when the program ends, scroll up, And you will see did you win or not.
