@@ -2,6 +2,7 @@ import sqlite3
 from cryptography.fernet import Fernet
 import os
 
+
 class PasswordManager:
     def __init__(self, db_name='passwords.db'):
         self.db_name = db_name
@@ -10,11 +11,11 @@ class PasswordManager:
         self.create_table()
 
     def create_table(self):
-        self.cursor.execute(''''CREATE TABLE IF NOT EXISTS passwords
-                          (id INTEGER PRIMARY KEY,
-                           website TEXT NOT NULL,
-                           username TEXT NOT NULL,
-                           password TEXT NOT NULL)''')
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS passwords
+                              (id INTEGER PRIMARY KEY,
+                               website TEXT NOT NULL,
+                               username TEXT NOT NULL,
+                               password TEXT NOT NULL)''')
         self.conn.commit()
 
     def generate_key(self):
@@ -83,3 +84,4 @@ if __name__ == "__main__":
             break
         else:
             print("Invalid choice. Please try again.")
+            
