@@ -1,13 +1,13 @@
 import tkinter
 
 
-def zacuvaj(show_hide=False):
+def save(show_hide=False):
 
     if show_hide:
-        momentalna_sostojba = password_entri.cget("show")
+        current_state = password_entri.cget("show")
 
-        password_entri.config(show="" if momentalna_sostojba else "*")
-        confirm_password_entri.config(show="" if momentalna_sostojba else "*")
+        password_entri.config(show="" if current_state else "*")
+        confirm_password_entri.config(show="" if current_state else "*")
     else:
         website_text = website_entri.get()
         print(website_text)
@@ -22,41 +22,41 @@ def zacuvaj(show_hide=False):
 
         if not website_text:
 
-            print("poleto za |website| e prazno. ve molime vnesete vebsite!")
+            print("The WEBSITE field is empty. Please enter a website!")
         else:
-            print("mestoto za website e popolneto.")
+            print("The WEBSITE field is filled.")
             return
 
         if not email_text:
 
-            print("poleto za |email| e prazno. ve molime vnesete email!")
+            print("The EMAIL field is empty. Please enter an email!")
         else:
-            print("poleto za |email| e popolneto.")
+            print("The EMAIL field is filled.")
             return
 
         if not recovery_email_text:
 
-            print("poleto za |recovery email| e prazno. ve molime popolnete go!")
+            print("The RECOVERY EMAIL field is empty. Please enter an email!")
         else:
-            print("poleto za |recovery email| e popolneto.")
+            print("The RECOVERY EMAIL field is filled.")
             return
 
         if password_text != confirm_password_text:
 
-            print("|pasvordite| ne se isti. ve molime vnesete isti pasvordi!")
+            print("The PASSWORDS are not the same. Please enter the same passwords!")
             return
 
         if not password_text and not confirm_password_text:
 
-            print("|pasvordite| se prazni. ve molime popolnete gi! ")
+            print("PASSWORDS are empty. Please fill in!")
         else:
-            print("|pasvordite| se isti.")
+            print("The PASSWORDS are the same.")
             return
 
         with open('text.txt', 'a') as s:
             s.write(website_text + " " + email_text + " " + password_text + " " +
                     confirm_password_text + " " + recovery_email_text + "\n")
-            print("informaciite se zacuvani vo fileot text.txt!")
+            print("The INFORMATION is stored in the text.txt file!")
 
 
 def change_bg_color():
@@ -64,54 +64,54 @@ def change_bg_color():
         entry_widget.config(bg="lightyellow")
 
 
-ekran = tkinter.Tk()
+screen = tkinter.Tk()
 
-ekran.geometry("400x200")
+screen.geometry("400x200")
 
 
-prv = tkinter.Label(text="website", fg="blue")
-prv.grid(column=0, row=0, pady=5, padx=30)
+first = tkinter.Label(text="website", fg="blue")
+first.grid(column=0, row=0, pady=5, padx=30)
 website_entri = tkinter.Entry(fg="blue")
 website_entri.grid(column=1, row=0)
 
-vtor = tkinter.Label(text="email", fg="orange")
-vtor.grid(column=0, row=1, pady=5, padx=30)
+second = tkinter.Label(text="email", fg="orange")
+second.grid(column=0, row=1, pady=5, padx=30)
 email_entri = tkinter.Entry(fg="orange")
 email_entri.grid(column=1, row=1)
 
-tret = tkinter.Label(text="password", fg="green")
-tret.grid(column=0, row=2, pady=5, padx=30)
+third = tkinter.Label(text="password", fg="green")
+third.grid(column=0, row=2, pady=5, padx=30)
 password_entri = tkinter.Entry(show="*", fg="green")
 password_entri.grid(column=1, row=2)
 
-cetvrt = tkinter.Label(text="confirm password", fg="black")
-cetvrt.grid(column=0, row=3, pady=5, padx=30)
+fourth = tkinter.Label(text="confirm password", fg="black")
+fourth.grid(column=0, row=3, pady=5, padx=30)
 confirm_password_entri = tkinter.Entry(show="*", fg="black")
 confirm_password_entri.grid(column=1, row=3)
 
-petti = tkinter.Label(text="recovery email", fg="purple")
-petti.grid(column=0, row=4, pady=5, padx=30)
+fifth = tkinter.Label(text="recovery email", fg="purple")
+fifth.grid(column=0, row=4, pady=5, padx=30)
 recovery_email_entri = tkinter.Entry(fg="purple")
 recovery_email_entri.grid(column=1, row=4,)
 
 if not website_entri:
-    print("полето за веб-сајтот е празно. Ве молиме внесете веб страница.")
+    print("The WEBSITE field is empty. Please enter a website!")
 
 if not password_entri:
-    print("Лозинки не се совпаѓаат. Ве молиме внесете совпаѓачки лозинки.")
+    print("PASSWORDS do not match. Please enter matching passwords!")
 
 if not email_entri:
-    print("poleto za email e prazno. ve molime vnesete email.")
+    print("Тhe EMAIL field is empty. Please enter an email!")
 
 if not recovery_email_entri:
-    print("poleto za star email e prazno. ve molime popolnetego poleto.")
+    print("Тhe OLD EMAIL field is empty. Please enter an old email!")
 
 
-kopce1 = tkinter.Button(text="Save", command=zacuvaj, width=10, bg="blue", fg="white")
-kopce1.grid(column=0, row=5, columnspan=1, pady=10)
+button_1 = tkinter.Button(text="Save", command=save, width=10, bg="blue", fg="white")
+button_1.grid(column=0, row=5, columnspan=1, pady=10)
 
-kopce2 = tkinter.Button(text="Show/hide password", command=lambda: zacuvaj(show_hide=True), bg="green", fg="white")
-kopce2.grid(column=1, row=5,  pady=10)
+button_2 = tkinter.Button(text="Show/hide password", command=lambda: save(show_hide=True), bg="green", fg="white")
+button_2.grid(column=1, row=5,  pady=10)
 
 
-ekran.mainloop()
+screen.mainloop()
